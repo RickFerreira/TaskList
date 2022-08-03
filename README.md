@@ -10,7 +10,7 @@
 <img  alt="Language Top"  src="https://img.shields.io/github/languages/top/RickFerreira/TaskList">
 <img  alt="Languages Count"  src="https://img.shields.io/github/languages/count/RickFerreira/TaskList">
 <img  alt="Last Commit"  src="https://img.shields.io/github/last-commit/RickFerreira/TaskList">
-<img  alt="Repo Size"  src="https://img.shields.io/github/repo-size/RickFerreira/TaskListt">
+<img  alt="Repo Size"  src="https://img.shields.io/github/repo-size/RickFerreira/TaskList">
 </a>
 </p>
 
