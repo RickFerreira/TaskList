@@ -18,15 +18,19 @@
 
 ### 👨🏻‍💻 Technologies
 
-<img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="html5" width="45"> &nbsp;
+<img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="C++" width="45"> &nbsp;
 
 <br>
 
 ### 💻 Results
 
-<h4>Em construção...</h4>
+<img src="https://www.ufpb.br/dcx/contents/imagens/figuras/output_zvmmKf.gif/@@images/image.gif" width="50%"> &nbsp;
 
 <br><br>
+
+### 🚀 Development team
+
+<br>
 
 <table>
   <tr>
@@ -54,8 +58,18 @@
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/MariaEduardaPereiraSm">
+        <img src="https://avatars.githubusercontent.com/u/86379615?v=4" width="100px;" alt="Avatar Eduarda"/><br>
+        <sub>
+          <b>Autor: Maria Eduarda </b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
+
+<br>
 
 [☝🏽 Voltar ao topo](#TaskList)<br>
 
