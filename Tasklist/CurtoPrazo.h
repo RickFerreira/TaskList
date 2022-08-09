@@ -21,4 +21,5 @@ class CurtoPrazo : public Tarefa{
         void setHorario(string horario);
 
 };
-#endif
+
+#endif /* CURTOPRAZO_H_ */
