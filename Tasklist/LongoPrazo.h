@@ -22,4 +22,4 @@ class LongoPrazo : public Tarefa{
 		void setData(string data);
 };
 
-#endif /* LONGOPRAZO_H_ */
+#endif

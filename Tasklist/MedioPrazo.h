@@ -26,4 +26,4 @@ class MedioPrazo : public Tarefa{
 		void setData(string data);
 };
 
-#endif /* MEDIOPRAZO_H_ */
+#endif

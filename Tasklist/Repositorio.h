@@ -18,11 +18,12 @@ class Repositorio{
 		Repositorio(string tempoPrazo);
 
 	//METHODS
-		string create(Tarefa tarefa);
-		string read(Tarefa tarefa);
-		string update(Tarefa tarefaParaAtualizar, Tarefa novaTarefa);
-		string deleteTarefa(Tarefa tarefa);
+		void setTempoPrazo(string prazo);
+		void create(Tarefa tarefa);
+		string read();
+		void update(Tarefa tarefaParaAtualizar, Tarefa novaTarefa);
+		void deleteTarefa(Tarefa tarefa);
 		void imprimirTarefa();
 };
 
-#endif /* REPOSITORIO_H_ */
+#endif
