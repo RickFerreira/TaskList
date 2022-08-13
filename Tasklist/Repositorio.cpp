@@ -1,6 +1,7 @@
 #include "Repositorio.h"
 
 #include <fstream>
+#include <string.h>
 
 #include "CurtoPrazo.h"
 #include "MedioPrazo.h"
@@ -18,242 +19,160 @@ void Repositorio::setTempoPrazo(string prazo){
 	this -> tempoPrazo = prazo;
 }
 
-void Repositorio::create(Tarefa tarefa){
-	string horario, data, condicao = tarefa.getTipo();
-	if(condicao == "CurtoPrazo"){
+string Repositorio::create(){
+	string nomeTarefa, descricao, tipo, horario, data;
+	int tipoCondicao;
 
-		ofstream arquivoCurtoPrazo("CurtoPrazo.txt", ios::app);
+	ofstream arquivo("Tarefa.txt", ios::app);
+	cin.ignore();
+	cout << "\nDigite o nome da sua tarefa: ";
+	getline(cin, nomeTarefa);
 
-		if(arquivoCurtoPrazo.is_open()){
+	cout << "\nDigite a descrição da sua tarefa: ";
+	getline(cin, descricao);
+	
+	cout << "\nDigite:" << endl;
+	cout << "1- Curto prazo" << endl;
+	cout << "2- Médio prazo" << endl;
+	cout << "3- Longo prazo" << endl;
+	cin >> tipoCondicao;
 
-			cout << "\nDigite o horario da sua tarefa(hh:mm):";
-			cin >> horario;
-
-			CurtoPrazo curtoPrazo = CurtoPrazo(tarefa.getNome(), tarefa.getDescricao(), tarefa.getTipo(), horario);
-
-			arquivoCurtoPrazo << "{Nome: " <<  curtoPrazo.getNome() << endl;
-			arquivoCurtoPrazo << "Descrição: " << curtoPrazo.getDescricao() << endl;
-			arquivoCurtoPrazo << "Tipo: " << curtoPrazo.getTipo() << endl;
-			arquivoCurtoPrazo << "Horario: " << curtoPrazo.getHorario() << "}\n" << endl;
-			arquivoCurtoPrazo.close();
+	if(tipoCondicao == 1){
+		tipo = "Curto Prazo";
+	}else{
+		if(tipoCondicao == 2){
+			tipo = "Medio Prazo";
+		}else{
+			tipo = "Longo Prazo";
 		}
 	}
 
-	else{
-		if(condicao == "MedioPrazo"){
-			ofstream arquivoMedioPrazo("MedioPrazo.txt", ios::app);
+	if(tipo == "Curto Prazo"){
+		if(arquivo.is_open()){
 
-			if(arquivoMedioPrazo.is_open()){
+			cin.ignore();
+			cout << "\nDigite o horario da sua tarefa(hh:mm): ";
+			getline(cin, horario);
 
-				cout << "\nDigite o horario da sua tarefa(hh:mm):";
-				cin >> horario;
-				cout << "\nDigite a data da sua tarefa(dd/MM/aaaa)";
-				cin >> data;
+			CurtoPrazo curtoPrazo = CurtoPrazo(nomeTarefa, descricao, tipo, horario);
 
-				MedioPrazo medioPrazo = MedioPrazo(tarefa.getNome(), tarefa.getDescricao(), tarefa.getTipo(), horario, data);
-
-				arquivoMedioPrazo << "{Nome: " << medioPrazo.getNome() << endl;;
-				arquivoMedioPrazo << "Descrição: " << medioPrazo.getDescricao() << endl;
-				arquivoMedioPrazo << "Tipo: " << medioPrazo.getTipo() << endl;
-				arquivoMedioPrazo << "Horario: " << medioPrazo.getHorario() << endl;
-				arquivoMedioPrazo << "Data: " << medioPrazo.getData() << "}\n" << endl;
-				arquivoMedioPrazo.close();
-
-			}
-		}
-
-		else{
-			if(condicao == "LongoPrazo"){
-			ofstream arquivoLongoPrazo("LongoPrazo.txt", ios::app);
-
-				if(arquivoLongoPrazo.is_open()){
-
-					cout << "\nDigite a data da sua tarefa(dd/MM/aaaa)";
-					cin >> data;
-
-					LongoPrazo longoPrazo = LongoPrazo(tarefa.getNome(), tarefa.getDescricao(), tarefa.getTipo(), data);
-
-					arquivoLongoPrazo << "{Nome: " << longoPrazo.getNome() << endl;
-					arquivoLongoPrazo << "Descrição: " << longoPrazo.getDescricao() << endl;
-					arquivoLongoPrazo << "Tipo: " << longoPrazo.getTipo() << endl;
-					arquivoLongoPrazo << "Data: " << longoPrazo.getData() << "}\n" << endl;
-					arquivoLongoPrazo.close();
-
-				}
-			}
+			arquivo << "{\"Nome\": \"" <<  curtoPrazo.getNome() << "\"," << endl;
+			arquivo << "\"Descrição\": \"" << curtoPrazo.getDescricao() << "\"," << endl;
+			arquivo << "\"Tipo\": \"" << curtoPrazo.getTipo() << "\"," << endl;
+			arquivo << "\"Horario: \"" << curtoPrazo.getHorario() << "\"}\n" << endl;
+			arquivo.close();
+			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
 		}
 	}
+	if(tipo == "Medio Prazo"){
+		if(arquivo.is_open()){
+			cin.ignore();
+			cout << "\nDigite o horario da sua tarefa(hh:mm): ";
+			getline(cin, horario);
+			cout << "\nDigite a data da sua tarefa(dd/mm/aaaa): ";
+			getline(cin, data);
+
+			MedioPrazo medioPrazo = MedioPrazo(nomeTarefa, descricao, tipo, horario, data);
+
+			arquivo << "{\"Nome\": \"" <<  medioPrazo.getNome() << "\"," << endl;
+			arquivo << "\"Descrição\": \"" << medioPrazo.getDescricao() << "\"," << endl;
+			arquivo << "\"Tipo\": \"" << medioPrazo.getTipo() << "\"," << endl;
+			arquivo << "\"Horario\": \"" << medioPrazo.getHorario() << "\",";
+			arquivo << " \"Data: \"" << medioPrazo.getData() << "\"}\n" << endl;
+			arquivo.close();
+			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
+		}
+	}
+	if(tipo == "Longo Prazo"){
+		if(arquivo.is_open()){
+			cin.ignore();
+			cout << "\nDigite a data da sua tarefa(dd/mm/aaaa): ";
+			getline(cin, data);
+
+			LongoPrazo longoPrazo = LongoPrazo(nomeTarefa, descricao, tipo, data);
+
+			arquivo << "{\"Nome\": \"" <<  longoPrazo.getNome() << "\"," << endl;
+			arquivo << "\"Descrição\": \"" << longoPrazo.getDescricao() << "\"," << endl;
+			arquivo << "\"Tipo\": \"" << longoPrazo.getTipo() << "\"," << endl;
+			arquivo << "\"Data: \"" << longoPrazo.getData() << "\"}\n" << endl;
+			arquivo.close();
+			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
+		}
+	}
+	return "\nTarefa não foi adicionada!\n";
 }
 
 string Repositorio::read(){
-	string aux, busca;
-	cout << "\nDigite o nome da tarefa para buscar no banco de dados!" << endl;
-	cin >> busca;
+	string buscar, aux;
 
-    busca = "{Nome: " + busca;
+	ifstream arquivoIn("Tarefa.txt");
+
+	cin.ignore();
+	cout << "\nDigite o nome da tarefa para verificar se ela existe. (Obs. digite o nome da tarefa corretamente!):";
+	getline(cin, buscar);
+
+	string buscarFormatado = "{\"Nome\": \"" + buscar + "\",";
 	
-	ifstream arquivoCurtoPrazo("CurtoPrazo.txt");
-    ifstream arquivoMedioPrazo("MedioPrazo.txt");
-    ifstream arquivoLongoPrazo("LongoPrazo.txt");
-
-	if (arquivoCurtoPrazo){
-
-		while(getline(arquivoCurtoPrazo, aux)){
-            if(busca == aux){
-                return "Tarefa existe!";
-            }
+	if(arquivoIn){
+		while(getline(arquivoIn, aux)){
+			if(aux == buscarFormatado){
+				return "\nTarefa " + buscar + " existe!\n";
+			}
 		}
-	}else{
+	}
+	return "\nTarefa " + buscar + " não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
+}
 
-        if(arquivoMedioPrazo){
-            while(getline(arquivoMedioPrazo, aux)){
-                if(busca == aux){
-                    return "Tarefa existe!";
-                }
-		    }
-        }else{
+string Repositorio::deleteTarefa(){
+	string deletar, aux;
+	
+	string lista[4];
+	int contador = 0;
+
+	ifstream arquivoIn("Tarefa.txt");
+
+	ofstream auxArquivo("aux.txt", ios::app);
+
+	cin.ignore();
+	cout << "\nDigite o nome da tarefa para deletar. (Obs. digite o nome da tarefa corretamente!):";
+	getline(cin, deletar);
+
+	string deletarFormatado = "{\"Nome\": \"" + deletar + "\",";
+	
+	while(getline(arquivoIn, aux)){
+		if(aux == deletarFormatado){
 			
-			if(arquivoLongoPrazo){
-				while(getline(arquivoLongoPrazo, aux)){
-					if(busca == aux){
-						return "Tarefa existe!";
-					}
-            	}
-			} 
-        }
-    }
-	return "Tarefa inexistente";
-}
-
-void Repositorio::update(Tarefa tarefaParaAtualizar, Tarefa novaTarefa){
-	string aux, atualizar = tarefaParaAtualizar.getNome();
-
-	atualizar = "{Nome: " + atualizar;
-
-	if (tarefaParaAtualizar.getTipo() == "CurtoPrazo"){
-		ifstream arquivosCurtoPrazo("CurtoPrazo.txt");
-		ofstream arquivonCurtoPrazo("CurtoPrazo.txt");
-		if(arquivosCurtoPrazo && arquivonCurtoPrazo){
-			while(arquivosCurtoPrazo >> aux){
-				if(aux == atualizar){
-					arquivonCurtoPrazo << "{Nome: " << novaTarefa.getNome() << endl;
-					arquivonCurtoPrazo << "Descrição: " << novaTarefa.getDescricao() << endl;
-					arquivonCurtoPrazo << "Tipo: " << novaTarefa.getTipo() << endl;
-					arquivonCurtoPrazo << "Horario: " << novaTarefa.getNome() << "}\n" << endl;
-				}
-				else{
-					arquivonCurtoPrazo << aux;
-				}
-			}
-			arquivosCurtoPrazo.close();
-			return "Tarefa atualizada com sucesso!";
+			lista[contador] = aux;
+			contador++;
+			cout << lista[0] << endl;
+			break;
 		}
 	}
+	if(contador == 1){
+		for(int i = 1; i < 4; i++){
+			getline(arquivoIn, aux);
+			lista[i] = aux;
+			cout << lista[i] << endl;
+
+		}
+	}
+	
+	if(contador == 0){
+		return "\nTarefa \"" + deletar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
+	}
+	
 	else{
-		if (tarefaParaAtualizar.getTipo() == "MedioPrazo"){
-			ifstream arquivosMedioPrazo("MedioPrazo.txt");
-			ofstream arquivonMedioPrazo("MedioPrazo.txt");
-			if(arquivosMedioPrazo && arquivonMedioPrazo){
-				while(arquivosMedioPrazo >> aux){
-					if(aux == tarefaParaAtualizar){
-						arquivonMedioPrazo << novaTarefa;
-					}
-					else{
-						arquivonMedioPrazo << aux;
-					}
-				}
-				arquivosMedioPrazo.close();
-				return "Tarefa atualizada com sucesso!";
+		contador = 0;
+		while(getline(arquivoIn, aux)){
+			if(strcasecmp(aux.c_str(), lista[contador].c_str()) == 0){
+				contador++;
+			}else{
+				auxArquivo << aux << endl;
 			}
 		}
-		else{
-			if (tarefaParaAtualizar.getTipo() == "LongoPrazo"){
-				ifstream arquivosLongoPrazo("LongoPrazo.txt");
-				ofstream arquivonLongoPrazo("LongoPrazo.txt");
-				if(arquivosLongoPrazo && arquivonLongoPrazo){
-					while(arquivosLongoPrazo >> aux){
-						if(aux == tarefaParaAtualizar){
-							arquivonLongoPrazo << novaTarefa;
-						}
-						else{
-							arquivonLongoPrazo << aux;
-						}
-					}
-					arquivosLongoPrazo.close();
-					return "Tarefa atualizada com sucesso!";
-				}
-			}
-		}
+		auxArquivo.close();
+		rename("aux.txt", "Tarefa.txt");
+		return "\nTarefa " + deletar + " apagado com sucesso!\n";
 	}
-}
-void Repositorio::deleteTarefa(Tarefa tarefa){
-	Tarefa aux;
-	if(tarefa.getTipo() == "CurtoPrazo"){
-		ifstream arquivosCurtoPrazo("CurtoPrazo.txt");
-		ofstream arquivonCurtoPrazo("CurtoPrazo.txt");
-		if(arquivosCurtoPrazo && arquivonCurtoPrazo){
-			while(arquivosCurtoPrazo >> aux){
-				if(aux != tarefa){
-					arquivonCurtoPrazo << aux;
-				}
-			}
-			arquivosCurtoPrazo.close();
-			return "Tarefa deletada com sucesso!";
-		}
-	}
-	else{
-		if(tarefa.getTipo() == "MedioPrazo"){
-			ifstream arquivosMedioPrazo("MedioPrazo.txt");
-			ofstream arquivonMedioPrazo("MedioPrazo.txt");
-			if(arquivosMedioPrazo && arquivonMedioPrazo){
-				while(arquivosMedioPrazo >> aux){
-					if(aux != tarefa){
-						arquivonMedioPrazo << aux;
-					}
-				}
-				arquivosMedioPrazo.close();
-				return "Tarefa deletada com sucesso!";
-			}
-		}
-		else{
-			if(tarefa.getTipo() == "LongoPrazo"){
-				ifstream arquivosLongoPrazo("LongoPrazo.txt");
-				ofstream arquivonLongoPrazo("LongoPrazo.txt");
-				if(arquivosLongoPrazo && arquivonLongoPrazo){
-					while(arquivosLongoPrazo >> aux){
-						if(aux != tarefa){
-							arquivonLongoPrazo << aux;
-						}
-					}
-					arquivosLongoPrazo.close();
-					return "Tarefa deletada com sucesso!";
-				}
-			}
-		}
-	}
-	return "Tarefa não deletada!";
-}
-void Repositorio::imprimirTarefas(){
-	ifstream arquivoCurtoPrazo("CurtoPrazo.txt");
-	ifstream arquivoMedioPrazo("MedioPrazo.txt");
-	ifstream arquivoLongoPrazo("LongoPrazo.txt");
-	Tarefa tarefa;
-	if(arquivoCurtoPrazo){
-		while(getline(arquivoCurtoPrazo, tarefa)){
-			cout << tarefa << endl;
-		}
-		arquivoCurtoPrazo.close();
-	}
-	if(arquivoMedioPrazo){
-		while(getline(arquivoMedioPrazo, tarefa)){
-			cout << tarefa << endl;
-		}
-		arquivoMedioPrazo.close();
-	}
-	if(arquivoLongoPrazo){
-		while(getline(arquivoLongoPrazo, tarefa)){
-			cout << tarefa << endl;
-		}
-		arquivoLongoPrazo.close();
-	}
+	return "\nTarefa \"" + deletar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
 }

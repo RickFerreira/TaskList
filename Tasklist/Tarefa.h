@@ -7,11 +7,12 @@
 using namespace std;
 
 class Tarefa{
-    //ATTRIBUTES                                                                
+    //ATTRIBUTES
     private:
         string nome;
         string descricao;
         string tipo;
+
     //CONSTRUCTOR
     public:
         Tarefa(string nome, string descricao, string tipo);
@@ -23,6 +24,7 @@ class Tarefa{
         void setDescricao(string descricao);
         string getTipo();
         void setTipo(string tipo);
-        
+
 };
+
 #endif
