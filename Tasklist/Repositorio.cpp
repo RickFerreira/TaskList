@@ -26,6 +26,7 @@ string Repositorio::create(){
 	ofstream arquivo("Tarefa.txt", ios::app);
 	cin.ignore();
 	cout << "\nDigite o nome da sua tarefa: ";
+	
 	getline(cin, nomeTarefa);
 
 	cout << "\nDigite a descrição da sua tarefa: ";
@@ -61,7 +62,7 @@ string Repositorio::create(){
 			arquivo << "\"Tipo\": \"" << curtoPrazo.getTipo() << "\"," << endl;
 			arquivo << "\"Horario: \"" << curtoPrazo.getHorario() << "\"}\n" << endl;
 			arquivo.close();
-			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
+			return "\nTarefa \"" + nomeTarefa + "\" adicionada com sucesso!\n";
 		}
 	}
 	if(tipo == "Medio Prazo"){
@@ -80,7 +81,7 @@ string Repositorio::create(){
 			arquivo << "\"Horario\": \"" << medioPrazo.getHorario() << "\",";
 			arquivo << " \"Data: \"" << medioPrazo.getData() << "\"}\n" << endl;
 			arquivo.close();
-			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
+			return "\nTarefa \"" + nomeTarefa + "\" adicionada com sucesso!\n";
 		}
 	}
 	if(tipo == "Longo Prazo"){
@@ -96,83 +97,77 @@ string Repositorio::create(){
 			arquivo << "\"Tipo\": \"" << longoPrazo.getTipo() << "\"," << endl;
 			arquivo << "\"Data: \"" << longoPrazo.getData() << "\"}\n" << endl;
 			arquivo.close();
-			return "\nTarefa " + nomeTarefa + " adicionada com sucesso!\n";
+			return "\nTarefa \"" + nomeTarefa + "\" adicionada com sucesso!\n";
 		}
 	}
 	return "\nTarefa não foi adicionada!\n";
 }
 
-string Repositorio::read(){
-	string buscar, aux;
+string Repositorio::read(string buscar){
+	string aux;
 
 	ifstream arquivoIn("Tarefa.txt");
-
-	cin.ignore();
-	cout << "\nDigite o nome da tarefa para verificar se ela existe. (Obs. digite o nome da tarefa corretamente!):";
-	getline(cin, buscar);
 
 	string buscarFormatado = "{\"Nome\": \"" + buscar + "\",";
 	
 	if(arquivoIn){
 		while(getline(arquivoIn, aux)){
 			if(aux == buscarFormatado){
-				return "\nTarefa " + buscar + " existe!\n";
+				return "\nTarefa \"" + buscar + "\" existe!\n";
 			}
 		}
 	}
-	return "\nTarefa " + buscar + " não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
+	return "\nTarefa \"" + buscar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
 }
 
-string Repositorio::deleteTarefa(){
-	string deletar, aux;
+string Repositorio::update(string atualizar){
+	string saida = this->deleteTarefa(atualizar);
+	cout << saida.length() << endl;
+	if(saida.length() < 40){
+		cout << "\nAperte enter!\n" << endl;
+		this->create();
+		return "\nTarefa \"" + atualizar + "\" atualizada com sucesso!\n";
+	}
+
+	return "\nTarefa \"" + atualizar + "\" não foi atualizada!\n";
+}
+
+string Repositorio::deleteTarefa(string deletar){
+	string aux;
 	
-	string lista[4];
-	int contador = 0;
+	int condicao = 0;
 
 	ifstream arquivoIn("Tarefa.txt");
 
-	ofstream auxArquivo("aux.txt", ios::app);
-
-	cin.ignore();
-	cout << "\nDigite o nome da tarefa para deletar. (Obs. digite o nome da tarefa corretamente!):";
-	getline(cin, deletar);
+	ofstream auxArquivo("aux.txt", ios::app);	
 
 	string deletarFormatado = "{\"Nome\": \"" + deletar + "\",";
 	
 	while(getline(arquivoIn, aux)){
 		if(aux == deletarFormatado){
-			
-			lista[contador] = aux;
-			contador++;
-			cout << lista[0] << endl;
+			condicao = 1;
 			break;
 		}
-	}
-	if(contador == 1){
-		for(int i = 1; i < 4; i++){
-			getline(arquivoIn, aux);
-			lista[i] = aux;
-			cout << lista[i] << endl;
-
+		else{
+			auxArquivo << aux << endl;
 		}
 	}
-	
-	if(contador == 0){
+	if(condicao == 1){
+		for(int i = 0; i < 4; i++){
+			getline(arquivoIn, aux);
+		}
+	}
+
+	while(getline(arquivoIn, aux)){
+		auxArquivo << aux << endl;
+	}
+
+	rename("aux.txt", "Tarefa.txt");
+
+	if(condicao == 0){
 		return "\nTarefa \"" + deletar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
 	}
+
 	
-	else{
-		contador = 0;
-		while(getline(arquivoIn, aux)){
-			if(strcasecmp(aux.c_str(), lista[contador].c_str()) == 0){
-				contador++;
-			}else{
-				auxArquivo << aux << endl;
-			}
-		}
-		auxArquivo.close();
-		rename("aux.txt", "Tarefa.txt");
-		return "\nTarefa " + deletar + " apagado com sucesso!\n";
-	}
-	return "\nTarefa \"" + deletar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
+	return "\nTarefa \"" + deletar + "\" apagado com sucesso!\n";
 }

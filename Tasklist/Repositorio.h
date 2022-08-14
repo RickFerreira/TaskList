@@ -20,9 +20,9 @@ class Repositorio{
 	//METHODS
 		void setTempoPrazo(string prazo);
 		string create();
-		string read();
-		string update();
-		string deleteTarefa();
+		string read(string buscar);
+		string update(string atualizar);
+		string deleteTarefa(string deletar);
 		void imprimirTarefa();
 };
 
