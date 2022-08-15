@@ -12,6 +12,7 @@ class CurtoPrazo : public Tarefa{
     //ATTRIBUTES
     private:
         string horario;
+		
     //CONSTRUCTOR
     public:
         CurtoPrazo(string nome, string descricao, string tipo, string horario);
