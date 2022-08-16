@@ -185,6 +185,7 @@ string Repositorio::deleteTarefa(string deletar){
 
 void Repositorio::imprimirTarefas(){
 	string aux;
+	int contador = 0;
 
 	ifstream arquivoIn("Tarefa.txt");
 	
@@ -193,13 +194,17 @@ void Repositorio::imprimirTarefas(){
 	if(arquivoIn){
 		while(getline(arquivoIn, aux)){
 			cout << aux << endl;
+			contador++;
 		}
+	}
+	if(contador < 4){
+		cout << "Nenhuma tarefa existente!\n" << endl;
 	}
 }
 
 void Repositorio::imprimirPorTipo(){
-	string aux, lista[4] = {"", "", "", ""}, tipo;
-	int laco = 1, tipoCondicao;
+	string aux, lista[4] = {"", "", "", ""}, tipo, tipoFormatado;
+	int laco = 1, tipoCondicao, contador = 0;
 
 	ifstream arquivoIn("Tarefa.txt");
 
@@ -233,7 +238,7 @@ void Repositorio::imprimirPorTipo(){
 		}
 	}
 
-	tipo = "Tipo: " + tipo + ".";
+	tipoFormatado = "Tipo: " + tipo + ".";
 	
 	cout << endl;
 
@@ -243,15 +248,19 @@ void Repositorio::imprimirPorTipo(){
 				getline(arquivoIn, aux);
 				lista[i] = aux;
 
-				if(aux == tipo){
+				if(aux == tipoFormatado){
 					cout << lista[0] << endl;
 					cout << lista[1] << endl;
 					cout << lista[2] << endl;
 					cout << lista[3] << endl;
 					cout << endl;
+					contador++;
 					break;
 				}
 			}
+		}
+		if(contador == 0){
+			cout << "Não existe nenhuma tarefa do tipo \"" << tipo << "\"\n" << endl;
 		}
 	}
 }
