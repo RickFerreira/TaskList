@@ -14,6 +14,7 @@ int main(){
 
 	cout << "\n\n--------------------Task List--------------------" << endl;
 	
+	//opções do menu
 	while(sair != "s"){
 		cout << "Digite o número da opção que você fazer:" << endl;
 		cout << "1- Criar tarefa." << endl;
@@ -26,6 +27,7 @@ int main(){
 
 		cin >> condicao;
 
+		//condições para chamada de métodos
 		switch (condicao){
 			case 1:
 				cout << repositorio.create() << endl;

@@ -20,7 +20,8 @@ string Repositorio::create(){
 	string nomeTarefa, descricao, tipo, horario, data;
 	int tipoCondicao, laco = 1;
 
-	ofstream arquivo("Tarefa.txt", ios::app);
+	//abrindo "Tarefa.txt" para o escrita
+	ofstream arquivo("Tarefa.txt", ios::app);				
 	cin.ignore();
 	cout << "\nDigite o nome da sua tarefa: ";
 	
@@ -29,7 +30,8 @@ string Repositorio::create(){
 	cout << "\nDigite a descrição da sua tarefa: ";
 	getline(cin, descricao);
 	
-	while(laco == 1){
+	//menu para escolha do prazo
+	while(laco == 1){										
 		cout << "\nDigite:" << endl;
 		cout << "1- Curto prazo" << endl;
 		cout << "2- Médio prazo" << endl;
@@ -59,6 +61,7 @@ string Repositorio::create(){
 		}
 	}
 
+	//condições para relacionar com as classes CurtoPrazo, MedioPrazo, LongoPrazo, onde cada um tem seus parametros da herança da classe Tarefa e seus parametro da própria classe
 	if(tipo == "Curto Prazo"){
 		if(arquivo.is_open()){
 
@@ -114,6 +117,7 @@ string Repositorio::create(){
 	return "\nTarefa não foi adicionada!\n";
 }
 
+//Método para retornar se uma tarefa existe ou não
 string Repositorio::read(string buscar){
 	string aux;
 
@@ -131,6 +135,7 @@ string Repositorio::read(string buscar){
 	return "\nTarefa \"" + buscar + "\" não existe!\nVerifique se escreveu o nome da tarefa correto, utilizando a opção 5 do menu principal!\n";
 }
 
+//Método para atualizar uma tarefa, onde ele chama o método delete para deletar a tarefa e chama o método de criar para criar a tarefa nova, retornando se atualizou ou se a tarefa não existe
 string Repositorio::update(string atualizar){
 	string saida = this->deleteTarefa(atualizar);
 
@@ -143,6 +148,7 @@ string Repositorio::update(string atualizar){
 	return "\nTarefa \"" + atualizar + "\" não foi atualizada!\n";
 }
 
+//Método para deletar tarefas, onde cria um txt novo auxiliar para colocar as tarefas que não é para deletar e no final renomeia para Tarefa.txt sem a tarefa que é para deletar
 string Repositorio::deleteTarefa(string deletar){
 	string aux;
 	
@@ -183,6 +189,7 @@ string Repositorio::deleteTarefa(string deletar){
 	return "\nTarefa \"" + deletar + "\" apagado com sucesso!\n";
 }
 
+//Método que imprime todas as tarefas do txt ou imprime que não existe nenhuma tarefa
 void Repositorio::imprimirTarefas(){
 	string aux;
 	int contador = 0;
@@ -202,6 +209,7 @@ void Repositorio::imprimirTarefas(){
 	}
 }
 
+//método que imprime as tarefas filtradas por tipo, caso não exista nenhuma tarefa daquele tipo ele imprime mensagem infomando
 void Repositorio::imprimirPorTipo(){
 	string aux, lista[4] = {"", "", "", ""}, tipo, tipoFormatado;
 	int laco = 1, tipoCondicao, contador = 0;
