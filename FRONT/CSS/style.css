@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    background: radial-gradient(circle, rgba(121,221,151,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+.pagina{
+    padding-inline: 7vw;
+    padding: 5vw 5vw 5vw 5vw;
+
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.6); /*fundo preto com transparencia*/
+    width: 100%; /*sempre 100% da página*/
+    height: 100%; /*sempre 100% da página*/
+    padding: 40px; /*largura dos itens de dentro*/
+    border-radius: 25px; /*arredendor bordas*/
+    box-shadow: 10px 10px 10px #000;/*sombra do box*/
+}
+
+.navbar{
+    position: relative;
+    width: 280px;
+    height: 100%;
+    background: #042331;
+    transition: all .5s ease;
+}
+.navbar header {
+    font-size: 22px;
+    color: white;
+    line-height: 70px;
+    text-align: center;
+    background: #063146;
+    user-select: none;
+}
+.navbar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255,255,255,.1);
+    transition: .4s;
+}
+ul li:hover a{
+    padding-left: 50px;
+}
+.navbar ul a i{
+    margin-right: 16px;
+}
+
+
