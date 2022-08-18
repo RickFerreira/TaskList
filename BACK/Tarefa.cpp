@@ -12,7 +12,7 @@ Tarefa::Tarefa(string nome, string descricao, string tipo){
 }
 
 //METHODS
-
+//métodos get e set
 string Tarefa::getNome(){
     return this -> nome;
 }

@@ -10,7 +10,7 @@ CurtoPrazo::CurtoPrazo(string nome, string descricao, string tipo, string horari
 }
 
 //METHODS
-
+//métodos get e set
 string CurtoPrazo::getHorario(){
     return this -> horario;
 }

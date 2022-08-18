@@ -10,6 +10,7 @@ LongoPrazo::LongoPrazo(string nome, string descricao, string tipo, string data) 
 }
 
 //METHODS
+//métodos get e set
 string LongoPrazo::getData(){
 	return this -> data;
 }

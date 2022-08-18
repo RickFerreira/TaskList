@@ -12,6 +12,7 @@ int main(){
 		
 	Repositorio repositorio = Repositorio();
 
+	//menu de opções que o usuário queira fazer
 	cout << "\n\n--------------------Task List--------------------" << endl;
 	
 	while(sair != "s"){
@@ -27,10 +28,12 @@ int main(){
 		cin >> condicao;
 
 		switch (condicao){
+			//case 1 para chamar o método da classe repositório de criação de tarefas
 			case 1:
 				cout << repositorio.create() << endl;
 				break;
-
+			
+			//case 2 para chamar o método da classe repositório de buscar por nome a tarefa se ela existe ou não
 			case 2:
 				cout << "\nDigite o nome da tarefa para verificar se ela existe. (Obs. digite o nome da tarefa corretamente!): ";
 				cin.ignore();
@@ -39,6 +42,7 @@ int main(){
 				cout << repositorio.read(buscar) << endl;
 				break;
 
+			//case 3 para chamar o método da classe repositório de atualização de tarefa
 			case 3:
 				cout << "\nDigite o nome da tarefa para atualizar. (Obs. digite o nome da tarefa corretamente!): ";
 				cin.ignore();
@@ -47,6 +51,7 @@ int main(){
 				cout << repositorio.update(atualizar) << endl;
 				break;
 			
+			//case 4 para chamar o método da classe repositório de deletar uma tarefa por nome
 			case 4:
 				cout << "\nDigite o nome da tarefa para deletar. (Obs. digite o nome da tarefa corretamente!): ";
 				cin.ignore();
@@ -55,21 +60,25 @@ int main(){
 				cout << repositorio.deleteTarefa(deletar) << endl;
 				break;
 
+			//case 5 para chamar o método da classe repositório de imprimir todas as tarefas que existe
 			case 5:
 				repositorio.imprimirTarefas();
 
 				break;
-
+			
+			//case 6 para chamar o método da classe repositório de imprimir todas as tarefas por prazo
 			case 6:
 				repositorio.imprimirPorTipo();
 
 				break;
 
+			//case 0 para sair do programa 
 			case 0:
 				cout << "\nObrigado por usar o programa. ^^\n" << endl;
 				sair = "s";
 				break;
 
+			//default para caso o usuário digite opção inválida
 			default:
 				cout << "\nOpção invalida! Digite novamente:\n" << endl;
 				break;

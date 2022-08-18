@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//herança da classe Tarefa
 class MedioPrazo : public Tarefa{
 	//ATTRIBUTES
 	private:
@@ -26,4 +27,4 @@ class MedioPrazo : public Tarefa{
 		void setData(string data);
 };
 
-#endif
+#endif /* MEDIOPRAZO_H_ */

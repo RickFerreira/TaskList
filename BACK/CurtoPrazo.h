@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//herança da classe Tarefa
 class CurtoPrazo : public Tarefa{
     //ATTRIBUTES
     private:

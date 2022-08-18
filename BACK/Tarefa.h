@@ -27,4 +27,4 @@ class Tarefa{
 
 };
 
-#endif
+#endif /* TAREFA_H_ */

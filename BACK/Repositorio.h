@@ -22,4 +22,4 @@ class Repositorio{
 		void imprimirPorTipo();
 };
 
-#endif
+#endif /* REPOSITORIO_H_ */
