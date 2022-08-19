@@ -74,8 +74,38 @@
     </div>
     <div class="container">
       <div class="conteudo">
+
         <h1>Tarefas</h1>
-      </div>    
+        
+        <div class="topo">
+          <input type="text" id="inputNovaTarefa" placeholder="Adicione tarefa">
+          <button id="btnAddTarefa">
+            <i class='bx bx-plus'></i>
+          </button>
+        </div>
+
+        <table class="listaTarefas">
+          <tr>
+            <td>Tarefa</td>
+            <td>Descrição</td>
+            <td>Prazo</td>
+            <td></td>      
+          </tr>
+          <tr>
+            <td>Slide POO</td>
+            <td>Terminar conclusão</td>
+            <td>20/08</td>
+            <td>
+              <button id="btnEditTarefa">
+                <i class='bx bx-edit'></i>
+              </button>              
+              <button id="btnRemoveTarefa">
+                <i class='bx bx-trash'></i>
+              </button>
+            </td>
+          </tr>
+        </table>  
+      </div>   
     </div>
   </section>
 
