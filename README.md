@@ -25,7 +25,7 @@
 
 ### 💻 Results
 
-<img src="https://www.ufpb.br/dcx/contents/imagens/figuras/output_zvmmKf.gif/@@images/image.gif" width="50%"> &nbsp;
+<img src="https://cdn.discordapp.com/attachments/982747680478494771/1010229990215909376/unknown.png" width="100%"> &nbsp;
 
 <br><br>
 
