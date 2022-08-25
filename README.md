@@ -1,6 +1,5 @@
 <div align="center">
    
- 
 # TaskList
   
 <h4> Esse é um projeto para a disciplina de Programação Orientada a Objetos, em que o desafio será fazer uma aplicação que utilize os conceitos principais do paradigma. É notório que a organização é algo imprescindível para qualquer indivíduo, através dela podemos realizar nossas tarefas de maneira estratégica e, por conseguinte, cumprir nossas responsabilidades da melhor forma possível. Para isso, a equipe decidiu se empenhar na criação de um software para organizar tarefas de curto, médio e longo prazo.
